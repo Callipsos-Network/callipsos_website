@@ -1,0 +1,634 @@
+@import "tailwindcss";
+
+/* ============================================
+   CALLIPSOS - INDEX.CSS
+   The Safety Layer for Autonomous AI Agents
+   ============================================ */
+
+/* ============================================
+   FONTS
+   ============================================ */
+
+/* Satoshi - Primary font (Fontshare) */
+@font-face {
+    font-family: "Satoshi";
+    src: url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap");
+}
+
+/* Import via CSS for better compatibility */
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap");
+
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+
+:root {
+    /* Brand Colors */
+    --color-bg: #000000;
+    --color-bg-elevated: #0a0a0a;
+    --color-bg-card: #0c0a09;
+
+    /* Text Colors (Stone palette) */
+    --color-text-primary: #e7e5e4;    /* stone-200 */
+    --color-text-secondary: #78716c;  /* stone-500 */
+    --color-text-muted: #57534e;      /* stone-600 */
+    --color-text-faint: #44403c;      /* stone-700 */
+
+    /* Accent Colors */
+    --color-accent-success: #34d399;  /* emerald-400 */
+    --color-accent-warning: #fb923c;  /* orange-400 */
+    --color-accent-error: #f87171;    /* red-400 */
+
+    /* Feature Colors */
+    --color-feature-policy: #60a5fa;     /* blue-400 */
+    --color-feature-simulation: #a78bfa; /* purple-400 */
+    --color-feature-error: #fb923c;      /* orange-400 */
+    --color-feature-transparency: #34d399; /* emerald-400 */
+
+    /* Border Colors */
+    --color-border: #1c1917;          /* stone-900 */
+    --color-border-hover: #292524;    /* stone-800 */
+
+    /* Scrollbar */
+    --scrollbar-track: #0a0a0a;
+    --scrollbar-thumb: #292524;
+    --scrollbar-thumb-hover: #44403c;
+
+    /* Gradients */
+    --gradient-emerald-glow: radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+    --gradient-amber-glow: radial-gradient(ellipse at 50% 30%, rgba(251, 191, 36, 0.06) 0%, transparent 50%);
+    --gradient-blue-glow: radial-gradient(ellipse at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+    --gradient-purple-glow: radial-gradient(ellipse at 70% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+    --gradient-orange-glow: radial-gradient(ellipse at 30% 50%, rgba(251, 146, 60, 0.08) 0%, transparent 50%);
+}
+
+/* ============================================
+   TAILWIND THEME EXTENSION
+   ============================================ */
+
+@theme {
+    /* Font families */
+    --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+    /* Custom colors for Tailwind classes */
+    --color-primary: #34d399;
+    --color-bg: #000000;
+    --color-bg-elevated: #0a0a0a;
+    --color-bg-card: #0c0a09;
+
+    /* Animation durations */
+    --duration-float: 8s;
+    --duration-spin-slow: 25s;
+    --duration-fade: 0.6s;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Webkit scrollbar (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+html {
+    width: 100vw;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100vw;
+    overflow-x: hidden;
+    background-color: var(--color-bg);
+    color: var(--color-text-secondary);
+    font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   CUSTOM ANIMATIONS (Keyframes)
+   ============================================ */
+
+/* Float animation - for particles/decorative elements */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Float with slight rotation */
+@keyframes float-rotate {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+/* Slow spin - for orbital elements */
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Reverse slow spin */
+@keyframes spin-slow-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* Fade in */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fade in up */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in down */
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in scale */
+@keyframes fade-in-scale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Pulse glow - for status indicators */
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 currentColor;
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 8px 2px currentColor;
+    }
+}
+
+/* Subtle pulse - for dots */
+@keyframes pulse-subtle {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Shimmer - for loading states */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+
+@utility animate-float {
+    animation: float 8s ease-in-out infinite;
+}
+
+@utility animate-float-rotate {
+    animation: float-rotate 8s ease-in-out infinite;
+}
+
+@utility animate-float-delay-1 {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@utility animate-float-delay-2 {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+@utility animate-float-delay-3 {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 3s;
+}
+
+@utility animate-spin-slow {
+    animation: spin-slow 25s linear infinite;
+}
+
+@utility animate-spin-slow-reverse {
+    animation: spin-slow-reverse 30s linear infinite;
+}
+
+@utility animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+}
+
+@utility animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+}
+
+@utility animate-fade-in-down {
+    animation: fade-in-down 0.6s ease-out forwards;
+}
+
+@utility animate-fade-in-scale {
+    animation: fade-in-scale 0.6s ease-out forwards;
+}
+
+@utility animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@utility animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@utility animate-shimmer {
+    animation: shimmer 2s linear infinite;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    background-size: 200% 100%;
+}
+
+/* Animation delays */
+@utility animation-delay-100 {
+    animation-delay: 100ms;
+}
+
+@utility animation-delay-200 {
+    animation-delay: 200ms;
+}
+
+@utility animation-delay-300 {
+    animation-delay: 300ms;
+}
+
+@utility animation-delay-500 {
+    animation-delay: 500ms;
+}
+
+@utility animation-delay-700 {
+    animation-delay: 700ms;
+}
+
+@utility animation-delay-1000 {
+    animation-delay: 1000ms;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
+@utility flex-center {
+    @apply flex items-center justify-center;
+}
+
+@utility flex-between {
+    @apply flex items-center justify-between;
+}
+
+@utility flex-start {
+    @apply flex items-center justify-start;
+}
+
+@utility col-center {
+    @apply flex flex-col items-center justify-center;
+}
+
+@utility abs-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+/* Headings */
+@utility heading-hero {
+    @apply text-4xl md:text-6xl lg:text-7xl font-light leading-tight text-stone-200;
+}
+
+@utility heading-section {
+    @apply text-3xl md:text-5xl lg:text-6xl font-light leading-tight text-stone-200;
+}
+
+@utility heading-feature {
+    @apply text-2xl md:text-3xl lg:text-4xl font-light text-stone-200;
+}
+
+@utility heading-card {
+    @apply text-xl md:text-2xl font-light text-stone-200;
+}
+
+/* Body text */
+@utility text-body {
+    @apply text-base md:text-lg text-stone-500 leading-relaxed;
+}
+
+@utility text-body-sm {
+    @apply text-sm text-stone-500 leading-relaxed;
+}
+
+/* Labels and captions */
+@utility text-label {
+    @apply text-xs md:text-sm tracking-widest uppercase text-stone-600;
+}
+
+@utility text-caption {
+    @apply text-xs text-stone-600;
+}
+
+/* Terminal/code text */
+@utility text-mono {
+    @apply font-mono text-sm text-stone-400;
+}
+
+@utility text-mono-sm {
+    @apply font-mono text-xs text-stone-500;
+}
+
+/* Accent text colors */
+@utility text-accent-success {
+    @apply text-emerald-400;
+}
+
+@utility text-accent-warning {
+    @apply text-orange-400;
+}
+
+@utility text-accent-error {
+    @apply text-red-400;
+}
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+
+/* Section containers */
+@utility section-padding {
+    @apply px-6 py-16 md:px-8 md:py-24;
+}
+
+@utility section-padding-lg {
+    @apply px-6 py-24 md:px-8 md:py-32;
+}
+
+/* Cards */
+@utility card-base {
+    @apply bg-stone-950 border border-stone-900 rounded-lg;
+}
+
+@utility card-hover {
+    @apply hover:border-stone-800 transition-colors duration-300;
+}
+
+@utility card-glow-emerald {
+    @apply relative;
+    background: radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 70%);
+}
+
+/* Buttons */
+@utility btn-primary {
+    @apply px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-emerald-400 transition-colors duration-300;
+}
+
+@utility btn-secondary {
+    @apply px-6 py-3 bg-transparent border border-stone-800 text-stone-300 font-medium rounded-lg hover:border-stone-600 hover:text-white transition-colors duration-300;
+}
+
+@utility btn-ghost {
+    @apply px-4 py-2 text-stone-400 hover:text-white transition-colors duration-300;
+}
+
+/* Inputs */
+@utility input-base {
+    @apply px-4 py-3 bg-stone-900/50 border border-stone-800 rounded-lg text-white placeholder-stone-600 focus:outline-none focus:border-stone-600 transition-colors duration-300;
+}
+
+/* Status indicators */
+@utility status-dot {
+    @apply w-2 h-2 rounded-full;
+}
+
+@utility status-live {
+    @apply bg-emerald-500 animate-pulse;
+}
+
+@utility status-pending {
+    @apply bg-amber-500 animate-pulse;
+}
+
+@utility status-error {
+    @apply bg-red-500;
+}
+
+/* Tags/badges */
+@utility tag-base {
+    @apply px-2 py-0.5 text-xs rounded;
+}
+
+@utility tag-live {
+    @apply bg-emerald-500/10 text-emerald-400;
+}
+
+@utility tag-soon {
+    @apply bg-stone-800 text-stone-500;
+}
+
+/* ============================================
+   DECORATIVE UTILITIES
+   ============================================ */
+
+/* Glow backgrounds */
+@utility glow-emerald {
+    background: radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+}
+
+@utility glow-amber {
+    background: radial-gradient(ellipse at 50% 30%, rgba(251, 191, 36, 0.06) 0%, transparent 50%);
+}
+
+@utility glow-blue {
+    background: radial-gradient(ellipse at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+}
+
+@utility glow-purple {
+    background: radial-gradient(ellipse at 70% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+}
+
+@utility glow-orange {
+    background: radial-gradient(ellipse at 30% 50%, rgba(251, 146, 60, 0.08) 0%, transparent 50%);
+}
+
+/* Borders */
+@utility border-subtle {
+    @apply border border-stone-900;
+}
+
+@utility border-glow-emerald {
+    @apply border border-emerald-500/30;
+}
+
+/* Gradient text */
+@utility text-gradient-emerald {
+    background: linear-gradient(90deg, #34d399 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   TRANSITION UTILITIES
+   ============================================ */
+
+@utility transition-base {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+@utility transition-fast {
+    @apply transition-all duration-150 ease-in-out;
+}
+
+@utility transition-slow {
+    @apply transition-all duration-500 ease-in-out;
+}
+
+/* ============================================
+   RESPONSIVE VISIBILITY UTILITIES
+   ============================================ */
+
+@utility mobile-only {
+    @apply block md:hidden;
+}
+
+@utility desktop-only {
+    @apply hidden md:block;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ============================================
+   SELECTION STYLES
+   ============================================ */
+
+::selection {
+    background-color: rgba(52, 211, 153, 0.3);
+    color: #fff;
+}
+
+::-moz-selection {
+    background-color: rgba(52, 211, 153, 0.3);
+    color: #fff;
+}
+
+/* ============================================
+   FOCUS STYLES (Accessibility)
+   ============================================ */
+
+:focus-visible {
+    outline: 2px solid var(--color-accent-success);
+    outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
