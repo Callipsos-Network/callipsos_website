@@ -632,3 +632,34 @@ body {
 :focus:not(:focus-visible) {
     outline: none;
 }
+
+/*
+ * ScrollTrigger creates a .pin-spacer wrapper around pinned elements.
+ * By default, this can clip content. We need to allow overflow.
+ */
+.pin-spacer {
+    overflow: visible !important;
+}
+
+/* Ensure the hero section allows overflow for the scaling globe */
+#hero {
+    overflow: visible !important;
+}
+
+/*
+ * Canvas should be block-level to avoid layout quirks.
+ * This is already set in the Globe component's style prop,
+ * but adding it here as a fallback.
+ */
+#hero canvas {
+    display: block;
+}
+
+/*
+ * GPU acceleration hint for the globe container.
+ * This helps with smooth CSS transform scaling.
+ */
+#hero .globe-container {
+    will-change: transform, opacity;
+    transform-origin: 50% 50%;
+}

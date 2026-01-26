@@ -10,7 +10,7 @@ const Navbar = () => {
             <nav className="flex items-center justify-between px-6 py-4 md:px-8">
                 {/* Logo */}
                 <a href="/" className="flex items-center gap-3 hover:-translate-y-0.5 transition-transform duration-300">
-                    <img
+                   <img
                         src="/logos/callipsos.svg"
                         alt="Callipsos logo"
                         className="w-8 h-8 md:w-10 md:h-10"
