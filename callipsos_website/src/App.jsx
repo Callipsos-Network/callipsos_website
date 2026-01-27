@@ -3,6 +3,9 @@ import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import ProblemSolution from "./components/ProblemSolution.jsx";
 import Features from "./components/Features.jsx";
+import Chains from "./components/Chains.jsx";
+import Team from "./components/Team.jsx";
+import FinalCTA from "./components/FinalCta.jsx";
 
 const App = () => {
     return (
@@ -11,6 +14,9 @@ const App = () => {
             <Hero />
             <ProblemSolution />
             <Features />
+            <Chains />
+            <Team />
+            <FinalCTA />
         </main>
     )
 }

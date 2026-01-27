@@ -11,7 +11,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <a href="/" className="flex items-center gap-3 hover:-translate-y-0.5 transition-transform duration-300">
                    <img
-                        src="/logos/callipsos.svg"
+                        src="/logos/callipsos_logo.png"
                         alt="Callipsos logo"
                         className="w-8 h-8 md:w-10 md:h-10"
                     />

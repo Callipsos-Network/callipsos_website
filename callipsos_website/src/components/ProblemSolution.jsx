@@ -154,7 +154,7 @@ const ProblemSolution = () => {
                     {/* Callipsos Logo */}
                     <div className="w-32 h-32 mx-auto mb-8">
                         <img
-                            src="/logos/callipsos.svg"
+                            src="/logos/callipsos_logo.png"
                             alt="Callipsos logo"
                             className="w-full h-full object-contain opacity-70"
                         />

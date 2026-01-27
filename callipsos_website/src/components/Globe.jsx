@@ -1,6 +1,7 @@
 //
+//
 import { useRef, useMemo, useState, useEffect, useCallback } from 'react'
-import { Canvas, useFrame,} from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
 // ============================================
@@ -24,10 +25,10 @@ const CONFIG = {
         glowOpacity: 0.15,
     },
     atmosphere: {
-        glowColor: new THREE.Color(0.180, 0.176, 0.176), // Warm neutral stone color
+        glowColor: new THREE.Color(0.180, 0.176, 0.176),
         intensity: 1.5,
-        scale: 0.999, // How far the atmosphere extends beyond the globe
-        falloff: 2.4, // How soft the edge is (lower = softer)
+        scale: 0.999,
+        falloff: 2.4,
     },
     nodes: {
         live: [
@@ -82,6 +83,34 @@ function latLonToVector3(lat, lon, radius) {
         radius * Math.cos(phi),
         radius * Math.sin(phi) * Math.sin(theta)
     )
+}
+
+// ============================================
+// RESPONSIVE CAMERA
+// ============================================
+function ResponsiveCamera() {
+    const { camera, size } = useThree()
+
+    useEffect(() => {
+        // Adjust camera distance based on screen width
+        // Mobile needs camera further back to see full globe
+        const isMobile = size.width < 768
+        const isTablet = size.width >= 768 && size.width < 1024
+
+        if (isMobile) {
+            camera.position.z = 7.5
+            camera.fov = 50
+        } else if (isTablet) {
+            camera.position.z = 7
+            camera.fov = 47
+        } else {
+            camera.position.z = 6.5
+            camera.fov = 45
+        }
+        camera.updateProjectionMatrix()
+    }, [camera, size.width])
+
+    return null
 }
 
 // ============================================
@@ -161,12 +190,11 @@ function ContinentDots() {
                 const v = y / img.height
                 const lat = 90 - v * 180
 
-                // Use larger sample step for polar regions (sparser dots)
                 let effectiveStep = sampleStep
                 if (lat < -55 || lat > 75) {
-                    effectiveStep = sampleStep * 3 // 3x sparser near poles
+                    effectiveStep = sampleStep * 3
                 } else if (lat < -40 || lat > 60) {
-                    effectiveStep = sampleStep * 1.5 // 1.5x sparser approaching poles
+                    effectiveStep = sampleStep * 1.5
                 }
 
                 for (let x = 0; x < img.width; x += effectiveStep) {
@@ -241,8 +269,9 @@ function ContinentDots() {
         </group>
     )
 }
+
 // ============================================
-// ATMOSPHERE GLOW (Soft outer rim with depth)
+// ATMOSPHERE GLOW
 // ============================================
 function Atmosphere() {
     const meshRef = useRef()
@@ -255,7 +284,6 @@ function Atmosphere() {
 
     useFrame((state) => {
         if (meshRef.current) {
-            // Gentle breathing animation for atmosphere
             const pulse = Math.sin(state.clock.elapsedTime * 0.5) * 0.01
             meshRef.current.scale.setScalar(CONFIG.atmosphere.scale + pulse)
         }
@@ -270,9 +298,7 @@ function Atmosphere() {
           varying vec3 vPosition;
 
           void main() {
-            // Pass world normal for rim lighting calculation
             vNormal = normalize(normalMatrix * normal);
-            // Position in view space
             vPosition = (modelViewMatrix * vec4(position, 1.0)).xyz;
             gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
           }
@@ -286,24 +312,14 @@ function Atmosphere() {
           varying vec3 vPosition;
 
           void main() {
-            // Calculate view direction
             vec3 viewDirection = normalize(-vPosition);
-
-            // Fresnel effect - edges glow more than center
             float fresnel = dot(vNormal, viewDirection);
             fresnel = abs(fresnel);
             fresnel = 1.0 - fresnel;
 
-            // Create layered glow for depth
-            // Inner softer glow
             float innerGlow = pow(fresnel, falloff);
-            // Outer sharper rim
             float outerRim = pow(fresnel, falloff * 1.8);
-
-            // Combine layers for atmospheric effect
             float combinedGlow = mix(innerGlow, outerRim, 0.4);
-
-            // Apply intensity and create final color
             float alpha = combinedGlow * intensity * 0.5;
 
             gl_FragColor = vec4(glowColor, alpha);
@@ -520,6 +536,7 @@ function GlobeScene({ isHovered, setIsHovered }) {
 
     return (
         <>
+            <ResponsiveCamera />
             <CursorTracker onCursorMove={handleCursorMove} />
 
             <group ref={groupRef} rotation={[CONFIG.rotation.baseTilt, 0, 0]}>
@@ -538,11 +555,7 @@ function GlobeScene({ isHovered, setIsHovered }) {
                     <meshBasicMaterial transparent opacity={0} depthWrite={false} />
                 </mesh>
 
-                {/* Atmosphere must render FIRST for proper depth sorting */}
                 <Atmosphere />
-
-                {/* Globe components */}
-                {/* <DottedGlobe /> */}
                 <ContinentDots />
                 <Nodes />
                 <Arcs />
@@ -573,7 +586,6 @@ export default function Globe({ className = '' }) {
         </div>
     )
 }
-
 
 // =========================== TODO: Fix Scroll Animation later ========================================================
 

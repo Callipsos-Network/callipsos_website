@@ -4,13 +4,11 @@ import Globe from './Globe'
 // Delta Y style diagonal pattern (base64 SVG)
 const diagonalPatternDark = `url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPGRlZnM+CiAgICAgIDxwYXR0ZXJuIGlkPSJkaWFnb25hbCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjgiIGhlaWdodD0iOCI+CiAgICAgICAgPGxpbmUgeDE9IjAiIHkxPSI0IiB4Mj0iNCIgeTI9IjgiIHN0cm9rZT0iIzNmM2YzZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIC8+CiAgICAgICAgPGxpbmUgeDE9IjQiIHkxPSIwIiB4Mj0iOCIgeTI9IjQiIHN0cm9rZT0iIzNmM2YzZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIC8+CiAgICAgIDwvcGF0dGVybj4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZGlhZ29uYWwpIiAvPgogIDwvc3ZnPg==")`
 
-const diagonalPatternLight = `url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPGRlZnM+CiAgICAgIDxwYXR0ZXJuIGlkPSJkaWFnb25hbCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjgiIGhlaWdodD0iOCI+CiAgICAgICAgPGxpbmUgeDE9IjAiIHkxPSI0IiB4Mj0iNCIgeTI9IjgiIHN0cm9rZT0iIzUyNTI1MiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIC8+CiAgICAgICAgPGxpbmUgeDE9IjQiIHkxPSIwIiB4Mj0iOCIgeTI9IjQiIHN0cm9rZT0iIzUyNTI1MiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIC8+CiAgICAgIDwvcGF0dGVybj4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZGlhZ29uYWwpIiAvPgogIDwvc3ZnPg==")`
-
 const Hero = () => {
     return (
         <section id="hero" className="relative h-screen overflow-hidden bg-black">
-            {/* Diagonal stripes - Left side */}
-            <div className="absolute top-0 left-0 bottom-0 w-[1%] hidden md:flex z-10">
+            {/* Diagonal stripes - Desktop only */}
+            <div className="absolute top-0 left-0 bottom-0 w-[1%] hidden lg:flex z-10">
                 <div className="relative flex h-full w-full">
                     <div
                         className="absolute inset-0"
@@ -20,27 +18,10 @@ const Hero = () => {
                             backgroundSize: '8px 8px',
                         }}
                     />
-                    {/*<div*/}
-                    {/*    className="absolute top-0 bottom-0 left-0 w-3 border-r border-l border-dashed border-zinc-900"*/}
-                    {/*    style={{*/}
-                    {/*        backgroundImage: diagonalPatternLight,*/}
-                    {/*        backgroundRepeat: 'repeat',*/}
-                    {/*        backgroundSize: '8px 8px',*/}
-                    {/*    }}*/}
-                    {/*/>*/}
-                    {/*<div*/}
-                    {/*    className="absolute top-0 right-0 bottom-0 w-3 border-r border-l border-dashed border-zinc-900"*/}
-                    {/*    style={{*/}
-                    {/*        backgroundImage: diagonalPatternLight,*/}
-                    {/*        backgroundRepeat: 'repeat',*/}
-                    {/*        backgroundSize: '8px 8px',*/}
-                    {/*    }}*/}
-                    {/*/>*/}
                 </div>
             </div>
 
-            {/* Diagonal stripes - Right side */}
-            <div className="absolute top-0 right-0 bottom-0 w-[1%] hidden md:flex z-10">
+            <div className="absolute top-0 right-0 bottom-0 w-[1%] hidden lg:flex z-10">
                 <div className="relative flex h-full w-full">
                     <div
                         className="absolute inset-0"
@@ -50,67 +31,94 @@ const Hero = () => {
                             backgroundSize: '8px 8px',
                         }}
                     />
-                    {/*<div*/}
-                    {/*    className="absolute top-0 bottom-0 left-0 w-3 border-r border-l border-dashed border-zinc-900"*/}
-                    {/*    style={{*/}
-                    {/*        backgroundImage: diagonalPatternLight,*/}
-                    {/*        backgroundRepeat: 'repeat',*/}
-                    {/*        backgroundSize: '8px 8px',*/}
-                    {/*    }}*/}
-                    {/*/>*/}
-                    {/*<div*/}
-                    {/*    className="absolute top-0 right-0 bottom-0 w-3 border-r border-l border-dashed border-zinc-900"*/}
-                    {/*    style={{*/}
-                    {/*        backgroundImage: diagonalPatternLight,*/}
-                    {/*        backgroundRepeat: 'repeat',*/}
-                    {/*        backgroundSize: '8px 8px',*/}
-                    {/*    }}*/}
-                    {/*/>*/}
                 </div>
             </div>
 
-            {/* Globe */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* ============================================ */}
+            {/* MOBILE LAYOUT */}
+            {/* ============================================ */}
+            <div className="lg:hidden absolute inset-0 flex flex-col">
+                {/* Top section - Wordmark & Terminal text */}
+                <div className="pt-20 px-6 z-20">
+                    {/* Callipsos wordmark */}
+                    <h1 className="text-4xl sm:text-4xl font-light text-stone-400 tracking-tight mb-4"
+                        style={{
+                            fontFamily: 'Outfit, system-ui, -apple-system, sans-serif',
+                            letterSpacing: '-0.04em'
+                        }}
+                    >
+                        Callipsos
+                    </h1>
+                </div>
+
+                {/* Globe - Centered in remaining space */}
+                <div className="flex-1 relative flex items-center justify-center">
+                    <div className="w-full h-full max-w-[500px] max-h-[500px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <Globe />
+                    </div>
+                </div>
+
+                {/* Bottom section - Status & Scroll indicator */}
+                <div className="pb-6 px-6 z-20">
+                    {/* Terminal-style info */}
+                    <div className="font-mono text-stone-600 text-xs sm:text-sm space-y-1">
+                        <p>/// Safety layer for <span className="text-stone-400">Autonomous Agents</span></p>
+                        <p>///</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* ============================================ */}
+            {/* DESKTOP LAYOUT (unchanged) */}
+            {/* ============================================ */}
+
+            {/* Globe - Desktop */}
+            <div className="hidden lg:flex absolute inset-0 items-center justify-center">
                 <div className="w-full h-full max-w-[900px] max-h-[900px]">
                     <Globe />
                 </div>
             </div>
 
-            {/* Bottom content */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-20">
+            {/* Bottom content - Desktop */}
+            <div className="hidden lg:block absolute bottom-0 left-0 right-0 p-8 md:p-12 z-20">
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
                     {/* Status info - Left */}
                     <div className="font-mono text-stone-700 text-sm space-y-1">
-                        <p>/// Callipsos</p>
-                        <p>/// Safety layer for <span className="text-stone-400">Autonomous Agents</span></p>
+                        <p>/// Callipsos Network</p>
                         <p>///</p>
-                        <p>/// <span className="text-emerald-500">11 nodes active</span> across 6 regions</p>
+                        <p>/// Safety layer for <span className="text-stone-400">Autonomous Agents</span></p>
+
                     </div>
 
                     {/* Callipsos wordmark - Right */}
                     <div className="flex items-end gap-4">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-stone-400 tracking-tight">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-stone-400 tracking-tight"
+                            style={{
+                                fontFamily: 'Outfit, system-ui, -apple-system, sans-serif',
+                                letterSpacing: '-0.04em'
+                            }}
+                        >
                             Callipsos
                         </h1>
                     </div>
                 </div>
             </div>
 
-            {/* Top right - Status indicator */}
-            <div className="absolute top-24 right-8 md:right-[18%] z-20">
+            {/* Top right - Status indicator - Desktop */}
+            <div className="hidden lg:block absolute top-24 right-8 md:right-[18%] z-20">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
                     <span className="text-xs text-stone-500 font-mono">Network Active</span>
                 </div>
             </div>
 
-            {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
-                <span className="text-xs text-stone-600 font-mono">Scroll to explore</span>
-                <div className="w-5 h-8 rounded-full border border-stone-700 flex items-start justify-center p-1">
-                    <div className="w-1 h-2 bg-stone-500 rounded-full animate-bounce" />
-                </div>
-            </div>
+            {/*/!* Scroll indicator - Desktop *!/*/}
+            {/*<div className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 z-20">*/}
+            {/*    <span className="text-xs text-stone-600 font-mono">Scroll to explore</span>*/}
+            {/*    <div className="w-5 h-8 rounded-full border border-stone-700 flex items-start justify-center p-1">*/}
+            {/*        <div className="w-1 h-2 bg-stone-500 rounded-full animate-bounce" />*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
             {/* Vignette overlay */}
             <div
@@ -124,7 +132,6 @@ const Hero = () => {
 }
 
 export default Hero
-
 // ============================================TODO: Fix GSAP animation fro scrolling later========================================================================
 
 // import React, { useRef, useEffect } from 'react'
