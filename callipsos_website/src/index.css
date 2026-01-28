@@ -109,6 +109,9 @@ html {
     width: 100vw;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -116,8 +119,9 @@ body {
     overflow-x: hidden;
     background-color: var(--color-bg);
     color: var(--color-text-secondary);
-    font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Outfit", ui-sans-serif, system-ui, sans-serif; /* Changed from Satoshi to Outfit */
     font-weight: 400;
+    font-size: 1rem; /* Add this */
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

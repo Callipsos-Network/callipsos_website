@@ -25,9 +25,8 @@ const FinalCTA = () => {
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover opacity-90"
                     style={{
-                        maxHeight: '250px',
-                        top: '50%',
-                        transform: 'translateY(-50%)'
+                        minHeight: '100%',
+                        minWidth: '100%',
                     }}
                 >
                     <source src="/videos/matrix-rain.webm" type="video/webm" />
@@ -43,7 +42,7 @@ const FinalCTA = () => {
 
                     {/* White text creates the knockout/window into the video */}
                     <h1
-                        className="relative text-[15vw] md:text-[12vw] lg:text-[15vw] font-light tracking-tight select-none text-white py-4"
+                        className="relative text-[18vw] sm:text-[16vw] md:text-[14vw] lg:text-[12vw] xl:text-[10vw] font-light tracking-tight select-none text-white py-8 md:py-12"
                         style={{
                             fontFamily: 'Outfit, system-ui, -apple-system, sans-serif',
                             letterSpacing: '-0.04em'
