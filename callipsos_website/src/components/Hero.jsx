@@ -1,10 +1,13 @@
 import React from 'react'
 import Globe from './Globe'
+import { useWaitlist } from '../hooks/useWaitlist'
 
 // Delta Y style diagonal pattern (base64 SVG)
 const diagonalPatternDark = `url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPGRlZnM+CiAgICAgIDxwYXR0ZXJuIGlkPSJkaWFnb25hbCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjgiIGhlaWdodD0iOCI+CiAgICAgICAgPGxpbmUgeDE9IjAiIHkxPSI0IiB4Mj0iNCIgeTI9IjgiIHN0cm9rZT0iIzNmM2YzZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIC8+CiAgICAgICAgPGxpbmUgeDE9IjQiIHkxPSIwIiB4Mj0iOCIgeTI9IjQiIHN0cm9rZT0iIzNmM2YzZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIC8+CiAgICAgIDwvcGF0dGVybj4KICAgIDwvZGVmcz4KICAgIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZGlhZ29uYWwpIiAvPgogIDwvc3ZnPg==")`
 
 const Hero = () => {
+    const { email, setEmail, handleSubmit, isLoading, isSuccess } = useWaitlist()
+    console.log('Token:', import.meta.env.VITE_AIRTABLE_TOKEN)
     return (
         <section id="hero" className="relative h-screen overflow-hidden bg-black">
             {/* Diagonal stripes - Desktop only */}
@@ -64,6 +67,26 @@ const Hero = () => {
                     <div className="font-mono text-stone-600 text-xs sm:text-sm space-y-1">
                         <p>/// Safety layer for <span className="text-stone-400">Autonomous Agents</span></p>
                         <p>///</p>
+                        <div className="flex items-center gap-2 mt-2">
+                            {isSuccess ? (
+                                <span className="text-emerald-500">/// you're in ✓</span>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
+                                    <span className="text-stone-600">/// join the waitlist →</span>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="you@email.com"
+                                        disabled={isLoading}
+                                        className="bg-transparent border-b border-stone-800 text-stone-400 placeholder-stone-700 text-xs py-1 px-2 w-40 focus:outline-none focus:border-stone-600 transition-colors"
+                                    />
+                                    <button type="submit" disabled={isLoading} className="text-stone-500 hover:text-white transition-colors">
+                                        {isLoading ? '...' : '→'}
+                                    </button>
+                                </form>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,8 +108,28 @@ const Hero = () => {
                     {/* Status info - Left */}
                     <div className="font-mono text-stone-700 text-sm space-y-1">
                         <p>/// Callipsos Network</p>
-                        <p>///</p>
                         <p>/// Safety layer for <span className="text-stone-400">Autonomous Agents</span></p>
+                        <p>///</p>
+                        <div className="flex items-center gap-2 mt-2">
+                            {isSuccess ? (
+                                <span className="text-emerald-500">/// you're in ✓</span>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
+                                    <span className="text-stone-600">/// join the waitlist →</span>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="you@email.com"
+                                        disabled={isLoading}
+                                        className="bg-transparent border-b border-stone-800 text-stone-400 placeholder-stone-700 text-xs py-1 px-2 w-40 focus:outline-none focus:border-stone-600 transition-colors"
+                                    />
+                                    <button type="submit" disabled={isLoading} className="text-stone-500 hover:text-white transition-colors">
+                                        {isLoading ? '...' : '→'}
+                                    </button>
+                                </form>
+                            )}
+                        </div>
 
                     </div>
 

@@ -183,7 +183,7 @@ const Team = () => {
             {/* ============================================ */}
             {/* HERO SECTION */}
             {/* ============================================ */}
-            <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-8 overflow-hidden">
+            <section id="team" className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-8 overflow-hidden">
                 {/* Gradient glow */}
                 <div
                     className="absolute inset-0 opacity-40"
@@ -333,11 +333,11 @@ const Team = () => {
                     </p>
 
                     <a
-                        href="mailto:careers@callipsos.xyz"
+                        href="mailto:careers@callipso.network"
                         className="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-white text-black font-medium hover:bg-emerald-400 transition-all duration-300 group"
                     >
                         <Mail className="w-5 h-5" />
-                        <span>careers@callipsos.xyz</span>
+                        <span>careers@callipso.network</span>
                     </a>
 
                     {/* Building in Public section */}
@@ -359,7 +359,7 @@ const Team = () => {
                             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black/50 border border-stone-800/50 text-stone-500 hover:text-white hover:border-stone-700 backdrop-blur-sm transition-all duration-300"
                         >
                             <Twitter className="w-4 h-4" />
-                            <span className="text-sm">@callipsos</span>
+                            <span className="text-sm">@Callipsos_</span>
                         </a>
                         <a
                             href="https://github.com/callipsos"
@@ -368,7 +368,7 @@ const Team = () => {
                             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black/50 border border-stone-800/50 text-stone-500 hover:text-white hover:border-stone-700 backdrop-blur-sm transition-all duration-300"
                         >
                             <Github className="w-4 h-4" />
-                            <span className="text-sm">callipsos</span>
+                            <span className="text-sm">CallipsosNetwork</span>
                         </a>
                     </div>
 

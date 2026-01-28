@@ -1,7 +1,24 @@
 import React from 'react'
 import { Shield, Play, AlertTriangle, FileText, Zap, Clock, CheckCircle2, XCircle } from 'lucide-react'
+import { useWaitlist } from '../hooks/useWaitlist'
 
 const Features = () => {
+    const {
+        email: email1,
+        setEmail: setEmail1,
+        handleSubmit: handleSubmit1,
+        isLoading: isLoading1,
+        isSuccess: isSuccess1
+    } = useWaitlist()
+
+    // Hook for the mid-section CTA
+    const {
+        email: email2,
+        setEmail: setEmail2,
+        handleSubmit: handleSubmit2,
+        isLoading: isLoading2,
+        isSuccess: isSuccess2
+    } = useWaitlist()
     return (
         <div className="bg-black">
             {/* ============================================ */}
@@ -49,7 +66,7 @@ const Features = () => {
                             <p className="text-lg text-stone-400 leading-relaxed mb-8">
                                 Define exactly what your agent can and can't do.
                                 Set spending limits, whitelist tokens, approve specific actions.
-                                Your boundaries are enforced cryptographically—not by trust.
+                                Your boundaries are enforced cryptographically, not by trust.
                             </p>
                             <ul className="space-y-4 text-stone-500">
                                 {[
@@ -87,7 +104,7 @@ const Features = () => {
                             <div className="space-y-2 text-stone-400">
                                 <div><span className="text-blue-400">max_transaction</span>: <span className="text-stone-300">1000 USDC</span></div>
                                 <div><span className="text-blue-400">daily_limit</span>: <span className="text-stone-300">5000 USDC</span></div>
-                                <div><span className="text-blue-400">allowed_tokens</span>: <span className="text-stone-300">[USDC, ETH, SUI]</span></div>
+                                <div><span className="text-blue-400">allowed_tokens</span>: <span className="text-stone-300">[USDC, ETH, BTC]</span></div>
                                 <div><span className="text-blue-400">allowed_actions</span>: <span className="text-stone-300">[swap, stake]</span></div>
                                 <div><span className="text-blue-400">blocked_actions</span>: <span className="text-stone-500">[bridge, withdraw_all]</span></div>
                             </div>
@@ -157,8 +174,8 @@ const Features = () => {
                             <h3 className="text-3xl md:text-5xl font-light mb-6 text-stone-200">Safe Preview</h3>
                             <p className="text-lg text-stone-400 leading-relaxed mb-8">
                                 Every transaction is simulated before execution.
-                                See exactly what will happen—token balances, gas costs,
-                                potential failures—before anything is final.
+                                See exactly what will happen: token balances, gas costs,
+                                potential failures, before anything is final.
                             </p>
                             <ul className="space-y-4 text-stone-500">
                                 {[
@@ -182,17 +199,23 @@ const Features = () => {
             {/* ============================================ */}
             <section className="py-24 px-8">
                 <div className="max-w-2xl mx-auto text-center">
-                    <p className="text-stone-500 mb-6">Be the first to build with Callipsos</p>
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-                        <input
-                            type="email"
-                            placeholder="you@email.com"
-                            className="flex-1 px-4 py-3 bg-stone-900/50 border border-stone-800 rounded-lg text-white placeholder-stone-600 focus:outline-none focus:border-stone-600 transition-colors"
-                        />
-                        <button className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-emerald-400 transition-colors whitespace-nowrap">
-                            Join Waitlist
-                        </button>
-                    </div>
+                    {isSuccess1 ? (
+                        <p className="text-emerald-400">You're on the list! 🎉</p>
+                    ) : (
+                        <form onSubmit={handleSubmit1} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                            <input
+                                type="email"
+                                value={email1}
+                                onChange={(e) => setEmail1(e.target.value)}
+                                placeholder="you@email.com"
+                                disabled={isLoading1}
+                                className="flex-1 px-4 py-3 bg-stone-900/50 border border-stone-800 rounded-lg text-white placeholder-stone-600 focus:outline-none focus:border-stone-600 transition-colors"
+                            />
+                            <button type="submit" disabled={isLoading1} className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-emerald-400 transition-colors whitespace-nowrap">
+                                {isLoading1 ? 'Joining...' : 'Join Waitlist'}
+                            </button>
+                        </form>
+                    )}
                 </div>
             </section>
 
@@ -218,7 +241,7 @@ const Features = () => {
                                 AI makes mistakes. LLMs hallucinate. That's reality.
                             </p>
                             <p className="text-lg text-stone-400 leading-relaxed mb-8">
-                                We go deeper than surface checks. Callipsos inspects raw calldata—detecting
+                                We go deeper than surface checks. Callipsos inspects raw calldata, detecting
                                 unrecognized token addresses, suspicious function calls, and known attack
                                 patterns before they execute.
                             </p>
@@ -446,16 +469,30 @@ const Features = () => {
                     </h3>
                     <p className="text-stone-500 mb-8">Get early access to the Callipsos SDK</p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-                        <input
-                            type="email"
-                            placeholder="you@email.com"
-                            className="flex-1 px-4 py-3 bg-stone-900/50 border border-stone-800 rounded-lg text-white placeholder-stone-600 focus:outline-none focus:border-stone-600 transition-colors"
-                        />
-                        <button className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-emerald-400 transition-colors whitespace-nowrap">
-                            Join Waitlist
-                        </button>
+                        {isSuccess2 ? (
+                            <p className="text-emerald-400 py-3">You're on the list! 🎉</p>
+                        ) : (
+                            <form onSubmit={handleSubmit2} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                                <input
+                                    type="email"
+                                    value={email2}
+                                    onChange={(e) => setEmail2(e.target.value)}
+                                    placeholder="you@email.com"
+                                    required
+                                    disabled={isLoading2}
+                                    className="flex-1 px-4 py-3 bg-stone-900/50 border border-stone-800 rounded-lg text-white placeholder-stone-600 focus:outline-none focus:border-stone-600 transition-colors disabled:opacity-50"
+                                />
+                                <button
+                                    type="submit"
+                                    disabled={isLoading2}
+                                    className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-emerald-400 transition-colors whitespace-nowrap disabled:opacity-50"
+                                >
+                                    {isLoading2 ? 'Joining...' : 'Join Waitlist'}
+                                </button>
+                            </form>
+                        )}
                     </div>
-                    <p className="text-stone-700 text-sm mt-6">Launching Q1 2025</p>
+                    <p className="text-stone-700 text-sm mt-6">Launching Q1 2026</p>
                 </div>
             </section>
         </div>

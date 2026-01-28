@@ -1,10 +1,11 @@
 const navLinks = [
-    {label: 'Why Callipsos', to: '#why-callipsos'},
+    {label: 'Why Callipsos', href: '#why-callipsos'},
     { label: 'Features', href: '#features' },
     { label: 'How it Works', href: '#how-it-works' },
     { label: 'Supported Chains', href: '#chains' },
     { label: 'Team', href: '#team' },
-    { label: 'Docs', href: '#docs' },
+    {label: 'Waitlist Signup', href: '#cta'},
+    // { label: 'Docs', href: '#docs' },
 
 ];
 const chains = [

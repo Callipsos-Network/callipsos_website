@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ArrowRight, Zap, Shield, Globe, ChevronRight } from 'lucide-react'
 import {chains} from "../constants/index.js";
+import { useWaitlist } from '../hooks/useWaitlist'
 
 // Glassmorphism card style
 const glassStyle = {
@@ -23,6 +24,8 @@ const glassStyleHover = {
 const ChainCard = ({ chain, index }) => {
     const [isHovered, setIsHovered] = useState(false)
     const isLive = chain.status === 'live'
+
+
 
     return (
         <div
@@ -139,14 +142,14 @@ const StatItem = ({ value, label, color }) => (
 )
 
 const Chains = () => {
-    const [email, setEmail] = useState('')
+    const { email, setEmail, handleSubmit, isLoading, isSuccess } = useWaitlist()
 
     return (
         <div className="bg-black min-h-screen">
             {/* ============================================ */}
             {/* HERO SECTION */}
             {/* ============================================ */}
-            <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-8 overflow-hidden">
+            <section id="chains" className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-8 overflow-hidden">
                 {/* Background gradient */}
                 <div
                     className="absolute inset-0 opacity-40"
@@ -237,7 +240,7 @@ const Chains = () => {
                             </h2>
 
                             <p className="text-stone-500 leading-relaxed mb-8">
-                                Callipsos uses Ika's dWallet technology to sign transactions
+                                Callipsos uses Ika's Multi Party Computation technology to sign transactions
                                 on any supported chain. Your agent doesn't need separate
                                 keys or integrations for each blockchain.
                             </p>
@@ -390,7 +393,7 @@ const Chains = () => {
                         We're adding new networks based on demand. Let us know what you need.
                     </p>
                     <a
-                        href="mailto:chains@callipsos.xyz"
+                        href="mailto:chains@callipso.network"
                         className="inline-flex items-center gap-2 text-emerald-400/80 hover:text-emerald-400 transition-colors group"
                     >
                         <span>Request a chain</span>
@@ -431,17 +434,31 @@ const Chains = () => {
 
                             {/* Email signup */}
                             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-                                <input
-                                    type="email"
-                                    placeholder="you@email.com"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="flex-1 px-5 py-3.5 bg-black/50 border border-stone-800 rounded-xl text-white placeholder-stone-600 focus:outline-none focus:border-emerald-500/50 transition-colors"
-                                />
-                                <button className="px-6 py-3.5 bg-white text-black font-medium rounded-xl hover:bg-emerald-400 transition-all duration-300 whitespace-nowrap flex items-center justify-center gap-2 group">
-                                    <span>Join Waitlist</span>
-                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </button>
+                                {isSuccess ? (
+                                <div className="flex items-center justify-center gap-2 py-3.5 text-emerald-400">
+                                    <span>You're on the list! 🎉</span>
+                                </div>
+                                ) : (
+                                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                                    <input
+                                        type="email"
+                                        placeholder="you@email.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                        disabled={isLoading}
+                                        className="flex-1 px-5 py-3.5 bg-black/50 border border-stone-800 rounded-xl text-white placeholder-stone-600 focus:outline-none focus:border-emerald-500/50 transition-colors disabled:opacity-50"
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={isLoading}
+                                        className="px-6 py-3.5 bg-white text-black font-medium rounded-xl hover:bg-emerald-400 transition-all duration-300 whitespace-nowrap flex items-center justify-center gap-2 group disabled:opacity-50"
+                                    >
+                                        <span>{isLoading ? 'Joining...' : 'Join Waitlist'}</span>
+                                        {!isLoading && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
+                                    </button>
+                                </form>
+                                )}
                             </div>
 
                             {/* Trust indicators */}

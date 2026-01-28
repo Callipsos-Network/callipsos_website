@@ -57,7 +57,7 @@ const Footer = () => {
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3">
                             <a
-                                href="https://x.com/callipsos"
+                                href="https://x.com/Callipsos_"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-stone-800 flex items-center justify-center text-stone-500 hover:text-white hover:border-stone-600 transition-all duration-300 hover:scale-110"
@@ -67,7 +67,7 @@ const Footer = () => {
                             </a>
 
                             <a
-                                href="https://github.com/callipsos"
+                                href="https://github.com/CallipsosNetwork"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-stone-800 flex items-center justify-center text-stone-500 hover:text-white hover:border-stone-600 transition-all duration-300 hover:scale-110"

@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import { ArrowRight, Check, Shield, Zap } from 'lucide-react'
+import { useWaitlist } from '../hooks/useWaitlist'
 
 const FinalCTA = () => {
-    const [email, setEmail] = useState('')
     const [submitted, setSubmitted] = useState(false)
+    const { email, setEmail, handleSubmit, isLoading, isSuccess } = useWaitlist()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('Email submitted:', email)
-        setSubmitted(true)
-    }
 
     return (
-        <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-black">
+        <section id="cta" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-black">
             {/* ============================================ */}
             {/* HERO TEXT WITH VIDEO MASK */}
             {/* Uses mix-blend-mode knockout technique */}
@@ -71,12 +67,12 @@ const FinalCTA = () => {
 
                 {/* Subheadline */}
                 <p className="text-lg md:text-xl text-stone-400 font-light max-w-xl mx-auto mb-10 leading-relaxed">
-                    AI agents that trade, yield farm, and manage your portfolio 24/7—with
+                    AI agents that trade, yield farm, and manage your portfolio 24/7, with
                     guardrails you control. Join the waitlist for early access.
                 </p>
 
                 {/* Email signup form */}
-                {!submitted ? (
+                {!isSuccess ? (
                     <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                         <div className="flex flex-col sm:flex-row gap-3">
                             <input
@@ -85,14 +81,16 @@ const FinalCTA = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                className="flex-1 px-5 py-4 bg-stone-900/50 border border-stone-800 rounded-xl text-white placeholder-stone-600 focus:outline-none focus:border-emerald-500/50 transition-colors text-center sm:text-left"
+                                disabled={isLoading}
+                                className="flex-1 px-5 py-4 bg-stone-900/50 border border-stone-800 rounded-xl text-white placeholder-stone-600 focus:outline-none focus:border-emerald-500/50 transition-colors text-center sm:text-left disabled:opacity-50"
                             />
                             <button
                                 type="submit"
-                                className="group px-8 py-4 bg-white text-black font-medium rounded-xl hover:bg-emerald-400 transition-all duration-300 whitespace-nowrap flex items-center justify-center gap-2"
+                                disabled={isLoading}
+                                className="group px-8 py-4 bg-white text-black font-medium rounded-xl hover:bg-emerald-400 transition-all duration-300 whitespace-nowrap flex items-center justify-center gap-2 disabled:opacity-50"
                             >
-                                <span>Join Waitlist</span>
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                <span>{isLoading ? 'Joining...' : 'Join Waitlist'}</span>
+                                {!isLoading && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                             </button>
                         </div>
                         <p className="text-stone-600 text-sm mt-4">
@@ -119,7 +117,7 @@ const FinalCTA = () => {
                     </div>
                     <div className="flex items-center gap-2">
                         <Zap className="w-4 h-4 text-emerald-500/50" />
-                        <span>Launching Q1 2025</span>
+                        <span>Launching Q1 2026</span>
                     </div>
                 </div>
             </div>

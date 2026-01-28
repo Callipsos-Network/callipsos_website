@@ -66,7 +66,7 @@ const Navbar = () => {
                 <div className="absolute bottom-8 left-8 right-8">
                     <div className="flex gap-4">
                         <a
-                            href="https://x.com/callipsos"
+                            href="https://x.com/Callipsos_"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-stone-700 hover:text-stone-400 transition-colors"
@@ -76,7 +76,7 @@ const Navbar = () => {
                             </svg>
                         </a>
                         <a
-                            href="https://github.com/callipsos"
+                            href="https://github.com/CallipsosNetwork"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-stone-700 hover:text-stone-400 transition-colors"

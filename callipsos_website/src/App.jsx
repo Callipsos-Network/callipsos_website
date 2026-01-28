@@ -6,6 +6,7 @@ import Features from "./components/Features.jsx";
 import Chains from "./components/Chains.jsx";
 import Team from "./components/Team.jsx";
 import FinalCTA from "./components/FinalCta.jsx";
+import Footer from "./components/Footer.jsx";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
             <Chains />
             <Team />
             <FinalCTA />
+            <Footer />
         </main>
     )
 }

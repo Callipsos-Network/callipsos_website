@@ -42,7 +42,7 @@ const ProblemSolution = () => {
                             {
                                 icon: Layers,
                                 title: 'Cross-protocol yield',
-                                desc: 'Agents that find the best rates across Aave, Compound, Sui DeFi, and move your assets automatically to maximize returns.'
+                                desc: 'Agents that find the best rates across Aave, Compound, and move your assets automatically to maximize returns.'
                             },
                             {
                                 icon: RefreshCw,
@@ -116,8 +116,8 @@ const ProblemSolution = () => {
                         <p className="text-stone-500 leading-relaxed">
                             It's not that agents aren't smart enough.
                             <br /><br />
-                            It's that when an agent gets compromised—through a bug, a hack,
-                            a hallucination—there's nothing stopping it from draining everything.
+                            It's that when an agent gets compromised through a bug, a hack or
+                            a hallucination, there's nothing stopping it from draining everything.
                             <br /><br />
                             <span className="text-stone-400">The worst case is total loss.</span>
                         </p>
@@ -175,7 +175,7 @@ const ProblemSolution = () => {
             {/* ============================================ */}
             {/* THE KEY INSIGHT */}
             {/* ============================================ */}
-            <section className="min-h-screen flex flex-col justify-center items-center px-8">
+            <section id="why-callipsos" className="min-h-screen flex flex-col justify-center items-center px-8">
                 <div className="max-w-5xl text-center">
                     <h2 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight text-stone-400">
                         Agents don't need full access.
@@ -202,7 +202,7 @@ const ProblemSolution = () => {
             {/* ============================================ */}
             {/* HOW IT WORKS */}
             {/* ============================================ */}
-            <section className="min-h-screen flex flex-col justify-center px-8 py-24">
+            <section id="how-it-works" className="min-h-screen flex flex-col justify-center px-8 py-24">
                 <div className="max-w-4xl mx-auto w-full">
                     <p className="text-stone-600 text-sm tracking-widest uppercase mb-16 text-center">How it works</p>
                     <div className="space-y-4">
